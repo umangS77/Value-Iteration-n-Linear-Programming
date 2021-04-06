@@ -4,9 +4,10 @@ import os
 import random
 import numpy as np
 # from dict import DotDict, npdict
+
+# TEAM 44 - YogiJi
 GAMMA = 0.999
 DELTA = 1e-3
-# TEAM 44 - YogiJi
 Y = [1/2, 1, 2][44 % 3]
 STEP_COST = -10/Y
 MOVEMENT_PROBABILITY = 0.85
@@ -68,11 +69,12 @@ class PlayerTakeStep:
     STAY = np.array((0, 0))
 
 PlayerMoves = DotDict({
-    "LEFT": tuple(PlayerTakeStep.LEFT),
     "UP": tuple(PlayerTakeStep.UP),
-    "STAY": tuple(PlayerTakeStep.STAY),
     "DOWN": tuple(PlayerTakeStep.DOWN),
+    "LEFT": tuple(PlayerTakeStep.LEFT),
     "RIGHT": tuple(PlayerTakeStep.RIGHT),
+    "STAY": tuple(PlayerTakeStep.STAY),
+
 })
 
 class StateOfPlayer:
@@ -83,11 +85,11 @@ class StateOfPlayer:
     E = np.array((1, 0))
 
 PlayerStates = DotDict({
-    "W": tuple(StateOfPlayer.W),
     "N": tuple(StateOfPlayer.N),
-    "C": tuple(StateOfPlayer.C),
     "S": tuple(StateOfPlayer.S),
     "E": tuple(StateOfPlayer.E),
+    "W": tuple(StateOfPlayer.W),
+    "C": tuple(StateOfPlayer.C),
 })
 
 
@@ -102,17 +104,16 @@ class IndexOfState:
     S = 3
     E = 4
     _inv_map = DotDict({
-        tuple(StateOfPlayer.W): W,
         tuple(StateOfPlayer.N): N,
-        tuple(StateOfPlayer.C): C,
         tuple(StateOfPlayer.S): S,
         tuple(StateOfPlayer.E): E,
+        tuple(StateOfPlayer.W): W,
+        tuple(StateOfPlayer.C): C,
+
     })
 
     def source_state(state):
         return IndexOfState._inv_map[tuple(state)]
-
-
 
 _INV_ACTIONS_MAP = {PlayerActions[k]: k for k in PlayerActions}
 _INV_ACTIONS_MAP.update({PlayerMoves[k]: k for k in PlayerMoves})
